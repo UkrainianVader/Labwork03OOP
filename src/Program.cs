@@ -2,7 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-public class Vector3D: IDisposable
+public class testClass
+{
+    public testClass()
+    {
+        Console.WriteLine("Я конструктор!");
+    }
+
+    ~testClass()
+    {
+        Console.WriteLine("Я деструктор!");
+    }
+}
+public class Vector3D : IDisposable
 {
     public double X;
     public double Y;
@@ -68,7 +80,13 @@ class Program
         {
             vector.Dispose();
         }
-        
-        
+
+        Console.WriteLine("Демонстрація роботи деструкторів без IDIsposable:");
+        for (int i = 0; i < 3; i++)
+        {
+            testClass obj = new testClass();
+        }
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
     }
 }
