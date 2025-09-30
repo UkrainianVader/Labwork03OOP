@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 public class testClass
 {
+     private byte[] bigArray = new byte[500 * 1024 * 1024];
     public testClass()
     {
         Console.WriteLine("Я конструктор!");
@@ -68,13 +69,16 @@ class Program
             new Vector3D(-1, -2, -3)
         };
 
+
         foreach (var vector in vectors)
         {
             Console.WriteLine($"Вектор: {vector}, Величина: {vector.Magnitude()}");
         }
 
+
         Vector3D largestVector = Vector3D.GetLargestVector(vectors.ToArray());
         Console.WriteLine($"Найбільший вектор: {largestVector}, його величина: {largestVector.Magnitude()}");
+
 
         foreach (var vector in vectors)
         {
@@ -82,11 +86,11 @@ class Program
         }
 
         Console.WriteLine("Демонстрація роботи деструкторів без IDIsposable:");
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 10; i++)
         {
             testClass obj = new testClass();
         }
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
+
     }
+    
 }
